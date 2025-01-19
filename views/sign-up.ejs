@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <label for="firstName">First Name: </label>
+      <input type="text" name="firstName" id="firstName" required />
+
+      <label for="lastName">Last Name: </label>
+      <input type="text" name="lastName" id="lastName" required />
+
+      <label for="username">Username: </label>
+      <input type="email" name="username" id="username" required />
+
+      <label for="password">Password (4 Characters Minimum): </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        minlength="4"
+        required
+      />
+
+      <label for="confirmPassword">Confirm Password: </label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        minlength="4"
+        required
+      />
+      <button type="submit">Register</button>
+    </form>
+  </body>
+</html>
