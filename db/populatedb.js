@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS messages (
     title VARCHAR ( 255 ) NOT NULL,
     time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     text VARCHAR ( 255 ) NOT NULL,
-    user_id INTEGER REFERENCES users (id) NOT NULL,
+    user_id INTEGER REFERENCES users (id) NOT NULL
 );
 
 `;

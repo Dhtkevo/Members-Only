@@ -16,9 +16,22 @@ async function deleteMessage(id) {
   await pool.query("DELETE FROM messages WHERE id = $1", [id]);
 }
 
-async function createUser(firstName, lastName, username, password, status) {
+async function createUser(
+  firstName,
+  lastName,
+  username,
+  password,
+  status = false
+) {
   await pool.query(
     "INSERT INTO users (first_name, last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)",
     [firstName, lastName, username, password, status]
   );
 }
+
+module.exports = {
+  getAllMessages,
+  createMessage,
+  deleteMessage,
+  createUser,
+};
