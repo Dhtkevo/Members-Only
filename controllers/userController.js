@@ -34,6 +34,10 @@ exports.getRegisterUserForm = (req, res) => {
   res.render("sign-up");
 };
 
+exports.getSecretPasscodeForm = (req, res) => {
+  res.render("secret");
+};
+
 exports.userCreatePost = [
   validateUser,
   asyncHandler(async (req, res, next) => {

@@ -8,4 +8,6 @@ userRouter.get("/sign-up", userController.getRegisterUserForm);
 
 userRouter.post("/sign-up", userController.userCreatePost);
 
+userRouter.get("/secret", userController.getSecretPasscodeForm);
+
 module.exports = userRouter;
