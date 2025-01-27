@@ -83,15 +83,18 @@ exports.userCreatePost = [
 exports.userSecretMember = [
   validateSecret,
   asyncHandler(async (req, res) => {
-    const user = await db.getUser(req.body.username);
-
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(500).send(errors.array()[0].msg);
     }
 
+    if (req.body.secretPass.toLowerCase() === process.env.SECRET_CODE) {
+      await db.giveUserMembership(req.body.username);
+    } else {
+      throw new Error("That code is incorrect! Try again!");
+    }
+
     return res.redirect("/");
-    // }
   }),
 ];
