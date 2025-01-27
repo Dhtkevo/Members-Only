@@ -30,6 +30,27 @@ const validateUser = [
     .withMessage("Passwords do not match!"),
 ];
 
+const validateSecret = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .isEmail()
+    .custom(
+      asyncHandler(async (value) => {
+        const userVal = await db.getUser(value);
+
+        if (userVal.length !== 1) {
+          throw new Error();
+        }
+      })
+    )
+    .withMessage("User does not exist! Create user first."),
+  body("secretPass")
+    .trim()
+    .notEmpty()
+    .withMessage("Please enter a secret password"),
+];
+
 exports.getRegisterUserForm = (req, res) => {
   res.render("sign-up");
 };
@@ -56,5 +77,21 @@ exports.userCreatePost = [
 
     await db.createUser(firstName, lastName, username, hashedPassword);
     return res.redirect("/");
+  }),
+];
+
+exports.userSecretMember = [
+  validateSecret,
+  asyncHandler(async (req, res) => {
+    const user = await db.getUser(req.body.username);
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(500).send(errors.array()[0].msg);
+    }
+
+    return res.redirect("/");
+    // }
   }),
 ];

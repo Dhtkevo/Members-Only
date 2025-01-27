@@ -29,9 +29,25 @@ async function createUser(
   );
 }
 
+async function getUser(username) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  return rows;
+}
+
+async function giveUserMembership(username) {
+  await pool.query(
+    "UPDATE users SET membership_status = true WHERE username = $1",
+    [username]
+  );
+}
+
 module.exports = {
   getAllMessages,
   createMessage,
   deleteMessage,
   createUser,
+  getUser,
+  giveUserMembership,
 };
