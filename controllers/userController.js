@@ -98,3 +98,7 @@ exports.userSecretMember = [
     return res.redirect("/");
   }),
 ];
+
+exports.getLoginForm = (req, res) => {
+  res.render("login");
+};
