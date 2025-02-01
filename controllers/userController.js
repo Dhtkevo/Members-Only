@@ -2,6 +2,7 @@ const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+const passport = require("passport");
 
 const validateUser = [
   body("firstName")
@@ -102,3 +103,8 @@ exports.userSecretMember = [
 exports.getLoginForm = (req, res) => {
   res.render("login");
 };
+
+exports.authenticateUser = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/",
+});

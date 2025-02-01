@@ -14,4 +14,6 @@ userRouter.post("/secret", userController.userSecretMember);
 
 userRouter.get("/login", userController.getLoginForm);
 
+userRouter.post("/login", userController.authenticateUser);
+
 module.exports = userRouter;

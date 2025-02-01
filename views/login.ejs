@@ -9,9 +9,15 @@
     <h1>please log in</h1>
     <form action="/user/login" method="POST">
       <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
+      <input
+        id="username"
+        name="username"
+        placeholder="username"
+        type="email"
+        required
+      />
       <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
+      <input id="password" name="password" type="password" min="4" required />
       <button type="submit">Log In</button>
     </form>
   </body>
