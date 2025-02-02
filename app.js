@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userRouter = require("./routes/userRouter");
+const messageRouter = require("./routes/messageRouter");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -62,6 +63,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 app.use("/user", userRouter);
+app.use("/messages", messageRouter);
 
 app.get("/", (req, res) => {
   res.render("index", { user: req.user });

@@ -8,6 +8,7 @@
   <body>
     <% if (locals.user) { %>
     <h1>Hello <%= locals.user.username %></h1>
+    <h3><a href="/messages/new">Create new message</a></h3>
     <% } else { %>
     <h1>Home Page</h1>
     <% } %>
