@@ -64,7 +64,7 @@ passport.deserializeUser(async (id, done) => {
 app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { user: req.user });
 });
 
 app.use((err, req, res, next) => {
