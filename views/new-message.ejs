@@ -7,11 +7,13 @@
   </head>
   <body>
     <h1>Create New Message</h1>
-    <form>
+    <form method="POST" action="/messages/new">
       <label for="msgTitle">Title: </label>
       <input type="text" name="msgTitle" id="msgTitle" minlength="4" required />
       <label for="msgText">Text: </label>
       <input type="text" name="msgText" id="msgText" minlength="4" required />
+      <label for="username">Username: </label>
+      <input type="email" name="username" id="username" required />
       <button type="submit">Create</button>
     </form>
   </body>
