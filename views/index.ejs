@@ -8,9 +8,22 @@
   <body>
     <% if (locals.user) { %>
     <h1>Hello <%= locals.user.username %></h1>
+    <% for (let message of locals.messages) { %>
+    <div>
+      <h4>Title: <%= message.title %></h4>
+      <h4>Text: <%= message.text %></h4>
+      <h4>Time: <%= message.time_stamp %></h4>
+      <h4>User ID: <%= message.user_id %></h4>
+    </div>
+    <% } %>
     <h3><a href="/messages/new">Create new message</a></h3>
     <% } else { %>
     <h1>Home Page</h1>
-    <% } %>
+    <% for (let message of locals.messages) { %>
+    <div>
+      <h4>Title: <%= message.title %></h4>
+      <h4>Text: <%= message.text %></h4>
+    </div>
+    <% } %> <% } %>
   </body>
 </html>

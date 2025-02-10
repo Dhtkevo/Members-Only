@@ -9,6 +9,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const pool = require("./db/pool");
 const bcrypt = require("bcryptjs");
+const db = require("./db/queries");
+const asyncHandler = require("express-async-handler");
 
 app.set("view engine", "ejs");
 
@@ -64,15 +66,20 @@ passport.deserializeUser(async (id, done) => {
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.messages = req.messages;
   next();
 });
 
 app.use("/user", userRouter);
 app.use("/messages", messageRouter);
 
-app.get("/", (req, res) => {
-  res.render("index", { user: req.user });
-});
+app.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const messages = await db.getAllMessages();
+    res.render("index", { user: req.user, messages: messages });
+  })
+);
 
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
