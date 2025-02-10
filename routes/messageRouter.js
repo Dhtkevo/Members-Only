@@ -8,4 +8,6 @@ messageRouter.get("/new", messageController.showMessageForm);
 
 messageRouter.post("/new", messageController.newMessagePost);
 
+messageRouter.post("/delete/:messageId", messageController.deleteMessage);
+
 module.exports = messageRouter;

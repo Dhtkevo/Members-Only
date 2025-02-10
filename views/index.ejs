@@ -14,6 +14,11 @@
       <h4>Text: <%= message.text %></h4>
       <h4>Time: <%= message.time_stamp %></h4>
       <h4>User ID: <%= message.user_id %></h4>
+      <% if (locals.user.is_admin === true) { %>
+      <form action="/messages/delete/<%= message.id %>" method="POST">
+        <button type="submit">Delete Message</button>
+      </form>
+      <% } %>
     </div>
     <% } %>
     <h3><a href="/messages/new">Create new message</a></h3>

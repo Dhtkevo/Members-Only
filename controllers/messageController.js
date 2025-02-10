@@ -17,3 +17,8 @@ exports.newMessagePost = asyncHandler(async (req, res) => {
   await db.createMessage(req.body.msgTitle, req.body.msgText, user.id);
   return res.redirect("/");
 });
+
+exports.deleteMessage = asyncHandler(async (req, res) => {
+  await db.deleteMessage(req.params.messageId);
+  return res.redirect("/");
+});
